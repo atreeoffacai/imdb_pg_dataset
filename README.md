@@ -1,18 +1,19 @@
-# IMDB / JOB Workload
+# IMDB / JOB 工作负载
 
-This repository contains a Vagrant machine that automatically pulls down and imports the IMDB dataset from that paper [How Good are Query Optimizers, Really?](http://www.vldb.org/pvldb/vol9/p204-leis.pdf). Note that, upon provisioning, the VM will download 1.2GB+ of data.
+该仓库包含一个 Vagrant 虚拟机，它会自动下载并导入来自论文 [How Good are Query Optimizers, Really?](http://www.vldb.org/pvldb/vol9/p204-leis.pdf) 的 IMDB 数据集。请注意，在初始化时，虚拟机会下载超过 **1.2GB** 的数据。
 
-It will create a VM running Arch Linux, upgrade it, install the latest version of Postgres, configure itself to use 16GB of RAM (12GB for the Postgres `shared_buffers`) and 4 CPU cores, create a 100GB disk image to hold the data, and, finally, download and load an archive. It could break at any moment.
+它会创建一个运行 **Arch Linux** 的虚拟机，执行升级，安装最新版本的 **Postgres**，配置使用 **16GB 内存**（其中 \*\*12GB 分配给 Postgres 的 `shared_buffers`），分配 **4 个 CPU 核心**，并创建一个 **100GB 磁盘镜像** 来存储数据，最后下载并加载数据归档。⚠️ 该过程可能随时会失败。
 
-Note: if you would just like to download a Postgres `pg_dump` of the IMDB dataset, you can get it here: [https://doi.org/10.7910/DVN/2QYZBT](https://doi.org/10.7910/DVN/2QYZBT)
+注意：如果你只想下载一个 IMDB 数据集的 Postgres `pg_dump`，可以在这里获取：
+[https://doi.org/10.7910/DVN/2QYZBT](https://doi.org/10.7910/DVN/2QYZBT)
 
-To use, first install the [persistent storage Vagrant plugin](https://github.com/kusnier/vagrant-persistent-storage):
+要使用，请首先安装 [persistent storage Vagrant 插件](https://github.com/kusnier/vagrant-persistent-storage)：
 
 ```bash
 vagrant plugin install vagrant-persistent-storage
 ```
 
-Next, modify `vagrant/Vagrantfile` to set a path to where you would like the VDI containing the database to go.
+接下来，修改 `vagrant/Vagrantfile`，设置数据库所在 VDI 文件的路径。
 
 ```ruby
 config.persistent_storage.enabled = true
@@ -24,7 +25,7 @@ config.persistent_storage.mountpoint = '/media/data'
 config.persistent_storage.volgroupname = 'myvolgroup'
 ```
 
-Then, start up the VM:
+然后启动虚拟机：
 
 ```bash
 cd vagrant
@@ -32,20 +33,26 @@ vagrant up
 cd ..
 ```
 
-You can ignore the last few warnings (about `/home/vagrant`). Note that this VM will have an open Postgres server, with a single user, `imdb`, with no password. You don't want to leave it running on a network you don't trust (or without your own firewall).
+可以忽略最后几个关于 `/home/vagrant` 的警告。⚠️ 注意，该虚拟机会开启一个 Postgres 服务器，里面只有一个用户 `imdb`，没有密码。如果是在不安全的网络环境下运行，请务必加上防火墙或不要直接运行。
 
-To connect to the database from your host machine:
+从宿主机连接到数据库：
+
 ```
 psql -U imdb -h localhost
 ```
 
-To run one of the JOB queries:
+运行一个 JOB 查询：
+
 ```
 psql -U imdb -h localhost < job/1a.sql
 ```
 
-## Citation
-If you use the JOB dataset, please cite the original authors (no affiliation):
+---
+
+## 引用 (Citation)
+
+如果你使用 **JOB 数据集**，请引用原始作者（无隶属关系）：
+
 ```bibtex
 @article{JOB,
   series = {VLDB '15},
@@ -62,7 +69,8 @@ If you use the JOB dataset, please cite the original authors (no affiliation):
 }
 ```
 
-If you use this VM or our prepared dataset, please cite our paper as well:
+如果你使用 **该虚拟机 (VM)** 或我们准备的数据集，请引用我们的论文：
+
 ```bibtex
 @inproceedings{rejoin,
   address = {Houston, TX},
@@ -76,12 +84,11 @@ If you use this VM or our prepared dataset, please cite our paper as well:
 }
 ```
 
-If you use the CEB datasets, please cite the Flow Loss paper:
+如果你使用 **CEB 数据集**，请引用 Flow Loss 论文：
 
-> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. https://doi.org/10.14778/3476249.3476259
+> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. [https://doi.org/10.14778/3476249.3476259](https://doi.org/10.14778/3476249.3476259)
 
-
-```
+```bibtex
 @article{flowloss,
 author = {Negi, Parimarjan and Marcus, Ryan and Kipf, Andreas and Mao, Hongzi and Tatbul, Nesime and Kraska, Tim and Alizadeh, Mohammad},
 title = {Flow-Loss: Learning Cardinality Estimates That Matter},
@@ -100,12 +107,11 @@ numpages = {14}
 }
 ```
 
-If you use the JOB extended queries, please cite the Neo paper:
+如果你使用 **JOB 扩展查询 (Ext-JOB)**，请引用 Neo 论文：
 
-> Ryan Marcus, Parimarjan Negi, Hongzi Mao, Chi Zhang, Mohammad Alizadeh, Tim Kraska, Olga Papaemmanouil, and Nesime Tatbul. 2019. Neo: a learned query optimizer. Proc. VLDB Endow. 12, 11 (July 2019), 1705–1718. https://doi.org/10.14778/3342263.3342644
+> Ryan Marcus, Parimarjan Negi, Hongzi Mao, Chi Zhang, Mohammad Alizadeh, Tim Kraska, Olga Papaemmanouil, and Nesime Tatbul. 2019. Neo: a learned query optimizer. Proc. VLDB Endow. 12, 11 (July 2019), 1705–1718. [https://doi.org/10.14778/3342263.3342644](https://doi.org/10.14778/3342263.3342644)
 
-
-```
+```bibtex
 @article{neo,
 author = {Marcus, Ryan and Negi, Parimarjan and Mao, Hongzi and Zhang, Chi and Alizadeh, Mohammad and Kraska, Tim and Papaemmanouil, Olga and Tatbul, Nesime},
 title = {Neo: A Learned Query Optimizer},
@@ -124,9 +130,9 @@ numpages = {14}
 }
 ```
 
-If you use the JOB-D queries, please cite the HybridQO paper (no affiliation):
+如果你使用 **JOB-D 查询**，请引用 HybridQO 论文（无隶属关系）：
 
-```
+```bibtex
 @article{DBLP:journals/pvldb/YuC0L22,
   author       = {Xiang Yu and
                   Chengliang Chai and
