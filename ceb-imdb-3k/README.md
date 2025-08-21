@@ -1,11 +1,10 @@
-# CEB IMDB "Unique Plans" 3k Queries
+# CEB IMDB “唯一计划” 3k 查询
 
-These are the SQL statements the "unique plans" smaller set of IMDB queries from the [cardinality estimation benchmark](https://github.com/learnedsystems/CEB). According to the CEB authors, this smaller set is "good enough" for initial experiments.
+这些 SQL 语句来自 [基数估计基准（cardinality estimation benchmark, CEB）](https://github.com/learnedsystems/CEB) 中的 IMDB 查询子集 —— “唯一计划（unique plans）” 的较小集合。根据 CEB 作者的说法，这个较小的集合已经 **“足够好（good enough）”** 用于初始实验。
 
-If you use these queries, please cite the Flow Loss paper:
+如果你使用这些查询，请引用 Flow Loss 论文：
 
-> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. https://doi.org/10.14778/3476249.3476259
-
+> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. [https://doi.org/10.14778/3476249.3476259](https://doi.org/10.14778/3476249.3476259)
 
 ```
 @article{flowloss,
