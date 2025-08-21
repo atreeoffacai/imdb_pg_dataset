@@ -1,11 +1,10 @@
-# CEB IMDB "Full" 13k Queries
+# CEB IMDB “完整” 13k 查询
 
-These are the SQL statements from the full set of IMDB queries from the [cardinality estimation benchmark](https://github.com/learnedsystems/CEB). According to the CEB authors, this larger set might be cumbersome to work with, since the 3k variant can give similar results.
+这些是 [cardinality estimation benchmark](https://github.com/learnedsystems/CEB)（基数估计基准）中 IMDB 查询的完整集合。根据 CEB 作者的说法，这个更大的集合在使用时可能会比较繁琐，因为 3k 子集可以得到相似的结果。
 
-If you use these queries, please cite the Flow Loss paper:
+如果你使用这些查询，请引用 Flow Loss 论文：
 
-> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. https://doi.org/10.14778/3476249.3476259
-
+> Parimarjan Negi, Ryan Marcus, Andreas Kipf, Hongzi Mao, Nesime Tatbul, Tim Kraska, and Mohammad Alizadeh. 2021. Flow-loss: learning cardinality estimates that matter. Proc. VLDB Endow. 14, 11 (July 2021), 2019–2032. [https://doi.org/10.14778/3476249.3476259](https://doi.org/10.14778/3476249.3476259)
 
 ```
 @article{flowloss,
@@ -25,4 +24,3 @@ pages = {2019–2032},
 numpages = {14}
 }
 ```
-
